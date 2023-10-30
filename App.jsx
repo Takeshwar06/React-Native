@@ -1,29 +1,26 @@
-import React from "react";
-import { View, Text, TextInput, ScrollView, SafeAreaView } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, ScrollView, SafeAreaView, Modal, Pressable, Button } from "react-native";
+import ScrollV from "./src/components/ScrollV";
+import Flist from "./src/components/Flist";
+import SecList from "./src/components/SecList";
 
 export default function App() {
-  const data = [
-    { name: "tiger", age: 21 },
-    { name: "amit", age: 17 },
-    { name: "bhola", age: 20 },
-    { name: "puran", age: 20 },
-    { name: "dushyant", age: 21 },
-    { name: "tiger", age: 21 },
-  ]
+ const [showModal,setShowModal]=useState(false);
+ const tigerfunction=()=>{
+  setShowModal(!showModal)
+ }
   return (
-    <SafeAreaView>
-    <ScrollView style={{display:"flex",justifyContent:"center",height:"100%"}}>
-      <TextInput style={{fontSize:30}}></TextInput>
-      {
-        data.map((element, index) => {
-          return (
-            <Text key={index} style={{ fontSize: 30,backgroundColor:"purple",margin:8,padding:8,textAlign:"center" }}>
-              {element.name} - {element.age}
-            </Text>
-          )
-        })
-      }
-    </ScrollView>
-    </SafeAreaView>
+    <>
+    <Modal visible={showModal}style={{flex:1}}>
+      <View style={{height:200,backgroundColor:"green"}}>
+      <Text style={{fontSize:40,textAlign:"center"}}>tiger</Text>
+      <Button onPress={tigerfunction} title="button"/>
+      </View>
+    </Modal>
+
+    {/* <ScrollV tigerfunction={tigerfunction} showModal={showModal}/> */}
+    {/* <Flist/> */}
+    <SecList/>
+   </>
   )
 }  
