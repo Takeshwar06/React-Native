@@ -3,9 +3,12 @@ import { View, Text, TextInput, ScrollView, SafeAreaView, Modal, Pressable, Butt
 import ScrollV from "./src/components/ScrollV";
 import Flist from "./src/components/Flist";
 import SecList from "./src/components/SecList";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 export default function App() {
  const [showModal,setShowModal]=useState(false);
+ const Tab=createBottomTabNavigator();
  const tigerfunction=()=>{
   setShowModal(!showModal)
  }
@@ -18,9 +21,15 @@ export default function App() {
       </View>
     </Modal>
 
-    {/* <ScrollV tigerfunction={tigerfunction} showModal={showModal}/> */}
+   <NavigationContainer>
+   <Tab.Navigator>
+      <Tab.Screen name="Home" component={ScrollV} />
+      <Tab.Screen name="Settings" component={Flist} />
+    </Tab.Navigator>
+     {/* <ScrollV tigerfunction={tigerfunction} showModal={showModal}/> */}
     {/* <Flist/> */}
-    <SecList/>
+    {/* <SecList/> */}
+   </NavigationContainer>
    </>
   )
 }  
